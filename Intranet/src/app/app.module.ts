@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import { IntranetComponent } from './intranet/intranet.component';
+import { SignIntComponent } from './user/sign-int/sign-int.component';
 
 
 
@@ -18,7 +19,8 @@ import { IntranetComponent } from './intranet/intranet.component';
     AppComponent,
     LoginComponent,
     UserComponent,
-    IntranetComponent
+    IntranetComponent,
+    SignIntComponent
   ],
   imports: [
     BrowserModule,
