@@ -19,8 +19,10 @@ import { MatMenuModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
 import { MatProgressSpinnerModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 
 
@@ -31,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon';
     AppComponent,
     UserComponent,
     IntranetComponent,
-    SignIntComponent
+    SignIntComponent,
+    MainDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
-    MatIconModule
+    MatIconModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
