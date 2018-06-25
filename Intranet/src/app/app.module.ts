@@ -23,6 +23,7 @@ import { MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, Ma
 import { MatIconModule } from '@angular/material/icon';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
+import { UserTableComponent } from './user-table/user-table.component';
 
 
 
@@ -34,7 +35,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     UserComponent,
     IntranetComponent,
     SignIntComponent,
-    MainDashboardComponent
+    MainDashboardComponent,
+    UserTableComponent
   ],
   imports: [
     BrowserModule,
