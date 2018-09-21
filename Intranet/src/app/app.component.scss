@@ -1,8 +1,13 @@
-.sidenav-container {
-  height: 100%;
+.MasterToolBar {
+    position: fixed;
+    z-index: 2;
 }
 
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+.main-card {
+    margin: 20px;
+    float: left;
+    max-width: 300px;
+    top: 80px;
 }
+
+

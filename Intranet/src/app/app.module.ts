@@ -14,6 +14,7 @@ import {SignIntComponent} from './user/sign-int/sign-int.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+
 import { MatInputModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material';
 import { MatPaginatorModule } from '@angular/material';
@@ -24,6 +25,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UserTableComponent } from './user-table/user-table.component';
+
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
@@ -55,7 +59,8 @@ import { UserTableComponent } from './user-table/user-table.component';
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
