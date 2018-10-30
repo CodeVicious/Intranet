@@ -6,13 +6,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { IntranetComponent } from './intranet/intranet.component';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 
 import {UserComponent} from './user/user.component';
  
 
 const routes: Routes = [
-  {path: 'user', component: UserComponent},
-  {path: '', component: IntranetComponent}
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: MainDashboardComponent },
+  { path: 'user', component: UserComponent }
   ];
 
 

@@ -1,54 +1,6 @@
-<mat-toolbar color="primary" class="MasterToolBar"> <span>Intranet del
-	Comune di San Miniato</span> 
-<!-- be careful: nothing between md-toolbar and md-content -->
+<mat-toolbar color="primary" class="MasterToolBar"> <span>{{title}}</span> 
+  <span class="fill-remaining-space"></span>
+<button mat-raised-button mat-button>About</button>
+<button mat-raised-button mat-button>Login</button>
 </mat-toolbar>
-
-<router-outlet>
-
-<mat-card class="main-card users-card">
-  <mat-card-header>
-    <div mat-card-avatar class="users-header-image"></div>
-    <mat-card-title>Gestione Utenti</mat-card-title>
-    <mat-card-subtitle>Modulo gestione utenti intranet</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="/assets/images/illustrated-people.jpg" alt="Photo of users">
-  <mat-card-content>
-  
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button mat-button> <a [routerLink]="['/user']"> SELECT </a></button>
-  </mat-card-actions>
-</mat-card>
-
-<mat-card class="main-card wharehouse-card">
-  <mat-card-header>
-    <div mat-card-avatar class="wharehouse-header-image"></div>
-    <mat-card-title>Gestione Magazzino</mat-card-title>
-    <mat-card-subtitle>Modulo gestione approvvigionamento mensa</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="/assets/images/magazzino1.jpg" alt="Photo of wharehouse">
-  <mat-card-content>
-  
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>SELECT</button>
-  </mat-card-actions>
-</mat-card>
-
-
-<mat-card class="main-card reclami-card">
-  <mat-card-header>
-    <div mat-card-avatar class="reclami-header-image"></div>
-    <mat-card-title>Gestione Reclami</mat-card-title>
-    <mat-card-subtitle>Modulo gestione reclami</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="/assets/images/reclami1.jpg" alt="Photo of wharehouse">
-  <mat-card-content>
-  
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>SELECT</button>
-  </mat-card-actions>
-</mat-card>
-
-</router-outlet>
+<router-outlet></router-outlet>
