@@ -24,10 +24,21 @@
               {
                 "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
               },
+              "./semantic/out/semantic.min.css",
               "src/styles.scss"
             ],
             "scripts": [
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+             "./semantic/out/semantic.min.js",
+             "./node_modules/jquery/dist/jquery.min.js"
+             ]
+=======
+            "./semantic/out/semantic.min.js"
+>>>>>>> refs/remotes/origin/master
             ]
+>>>>>>> branch 'master' of https://github.com/CodeVicious/Intranet.git
           },
           "configurations": {
             "production": {
