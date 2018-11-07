@@ -3,7 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { UserTableDataSource } from './user-table-datasource';
 
 @Component({
-  selector: 'user-table',
+  selector: 'app-user-table',
   templateUrl: './user-table.component.html',
   styleUrls: ['./user-table.component.css']
 })

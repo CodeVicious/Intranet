@@ -9,7 +9,7 @@ export class UserComponent implements OnInit {
 
   componentName: String;
 
-  constructor() {
+  constructor(@Inject('API_URL') apiUrl: string) {
     this.componentName = 'User Component';
    }
 
