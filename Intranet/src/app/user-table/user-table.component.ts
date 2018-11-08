@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-import { UserTableDataSource } from './user-table-datasource';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { merge, of as observableOf } from 'rxjs';
+import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-table',
@@ -10,12 +14,59 @@ import { UserTableDataSource } from './user-table-datasource';
 export class UserTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: UserTableDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  id: number;
+  name: string;
+  surname: string;
+  username: string;
+  email: string;
+  telephone: string;
+  mobile: number;
+
+  displayedColumns: string[] = ['id', 'name', 'surname', 'username', 'email', 'telephone', 'mobile', 'actions'];
+  userService: UserService | null;
+  data: User[] = [];
+
+  resultsLength = 0;
+  isLoadingResults = true;
+  isRateLimitReached = false;
+
+  constructor(private http: HttpClient, @Inject('API_URL') private apiUrl: string) { }
 
   ngOnInit() {
-    this.dataSource = new UserTableDataSource(this.paginator, this.sort);
+
+    this.userService = new UserService(this.http, this.apiUrl);
+
+    // If the user changes the sort order, reset back to the first page.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          // tslint:disable-next-line:no-non-null-assertion
+          return this.userService!.getUsers
+            ('', this.sort.active, this.sort.direction, this.paginator.pageIndex);
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = data.length;
+
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
+      ).subscribe(data => this.data = data);
+
+
+
+
   }
 }

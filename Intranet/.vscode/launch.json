@@ -31,6 +31,48 @@
       "request": "launch",
       "url": "http://localhost:4200/#",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Chrome Intranet on Angular CLI Server (4)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/#",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Chrome Intranet on Angular CLI Server (5)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/#",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Chrome Intranet on Angular CLI Server (6)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/#",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Chrome Intranet on Angular CLI Server (7)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/#",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Chrome Intranet on Angular CLI Server (8)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/#",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "Launch Chrome Intranet on Angular CLI Server (9)",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/#",
+      "webRoot": "${workspaceFolder}"
     }
   ]
 }

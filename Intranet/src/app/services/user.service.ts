@@ -10,7 +10,7 @@ export class UserService {
     @Inject('API_URL') private apiUrl: string
   ) { }
 
-  search(query: string): Observable<User[]> {
+  getUsers(query: string, sort: string, order: string, page: number): Observable<User[]> {
     const params: string = [
       'column=surname',
       'sort=asc',
@@ -19,19 +19,7 @@ export class UserService {
     ].join('&');
 
 
-    const queryUrl = `${this.apiUrl}?${params}`;
-    return this.http.get(queryUrl).map(response => {
-      return <any>response['items'].map(item => {
-        // console.log("raw item", item); // uncomment if you want to debug
-        return new User({
-          id: item.id,
-          name: item.name,
-          surname: item.surname,
-          email: item.email,
-          telephone: item.telephone,
-          mobile: item.mobile
-        });
-      });
-    });
+    const queryUrl = `${this.apiUrl}/user/All?${params}`;
+    return this.http.get<User[]>(queryUrl);
   }
 }
