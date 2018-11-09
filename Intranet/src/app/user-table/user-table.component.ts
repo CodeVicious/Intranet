@@ -47,7 +47,7 @@ export class UserTableComponent implements OnInit {
           this.isLoadingResults = true;
           // tslint:disable-next-line:no-non-null-assertion
           return this.userService!.getUsers
-            ('', this.sort.active, this.sort.direction, this.paginator.pageIndex);
+            ('', this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
         }),
         map(data => {
           // Flip flag to show that loading has finished.

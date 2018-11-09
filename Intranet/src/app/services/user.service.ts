@@ -10,12 +10,12 @@ export class UserService {
     @Inject('API_URL') private apiUrl: string
   ) { }
 
-  getUsers(query: string, sort: string, order: string, page: number): Observable<User[]> {
+  getUsers(query: string, column: string, order: string, pageIndex: number, pageSize: number): Observable<User[]> {
     const params: string = [
-      'column=surname',
-      'sort=asc',
-      'start=0',
-      'length=10'
+      `column=${column}`,
+      `sort=${order}`,
+      `start=${pageSize * (pageIndex - 1)}`,
+      `length=${pageSize}`
     ].join('&');
 
 
