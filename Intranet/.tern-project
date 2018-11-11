@@ -3,6 +3,9 @@
   "plugins": {
     "guess-types": {
       
+    },
+    "angular1": {
+      
     }
   },
   "libs": [

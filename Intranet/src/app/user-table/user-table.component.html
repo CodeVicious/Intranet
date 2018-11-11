@@ -1,74 +1,81 @@
 <div class="mat-table-user">
 
-  <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
-      Utenti San Miniato overloaded
-    </div>
-  </div>
-
-  
-  <div class="example-table-container">
-
-    <table mat-table [dataSource]="data" class="example-table"
-           matSort matSortActive="name" matSortDisableClear matSortDirection="asc">
-      <!-- Number Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef  mat-sort-header="id">#</th>
-        <td mat-cell *matCellDef="let row">{{row.id}}</td>
-      </ng-container>
-
-      <!-- Title Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef  mat-sort-header="name">Nome</th>
-        <td mat-cell *matCellDef="let row">{{row.name}}</td>
-      </ng-container>
-
-      <!-- State Column -->
-      <ng-container matColumnDef="surname">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header="surname">Cognome</th>
-        <td mat-cell *matCellDef="let row">{{row.surname}}</td>
-      </ng-container>
-
-      <!-- Created Column -->
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef>Utente</th>
-        <td mat-cell *matCellDef="let row">{{row.username}}</td>
-      </ng-container>
-
-            <!-- Created Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>email</th>
-        <td mat-cell *matCellDef="let row">{{row.email}}</td>
-      </ng-container>
-
-            <!-- Created Column -->
-      <ng-container matColumnDef="telephone">
-        <th mat-header-cell *matHeaderCellDef>Telephono</th>
-        <td mat-cell *matCellDef="let row">{{row.telephone}}</td>
-      </ng-container>
-
-            <!-- Created Column -->
-      <ng-container matColumnDef="mobile">
-        <th mat-header-cell *matHeaderCellDef>Cellulare</th>
-        <td mat-cell *matCellDef="let row">{{row.mobile}}</td>
-      </ng-container>
+	<!-- New part: this is the search box -->
+	<mat-input-container> <input matInput
+		placeholder="Cerca un utente" #input> </mat-input-container>
+		
+	<div class="example-loading-shade"
+		*ngIf="isLoadingResults || isRateLimitReached">
+		<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+		<div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+			Utenti San Miniato overloaded</div>
+	</div>
 
 
-      <ng-container matColumnDef="actions">
-        <mat-header-cell  *matHeaderCellDef > Azioni </mat-header-cell>
-        <mat-cell *matCellDef="let row" >
-          <button mat-raised-button color="primary" >Edit</button>
-      </mat-cell>
-      </ng-container>
+	<div class="example-table-container">
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
+		<table mat-table [dataSource]="data" class="example-table" matSort
+			matSortActive="name" matSortDisableClear matSortDirection="asc">
+			<!-- Number Column -->
+			<ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header="id">#</th>
+			<td mat-cell *matCellDef="let row">{{row.id}}</td>
+			</ng-container>
+
+			<!-- Title Column -->
+			<ng-container matColumnDef="name">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header="name">Nome</th>
+			<td mat-cell *matCellDef="let row">{{row.name}}</td>
+			</ng-container>
+
+			<!-- State Column -->
+			<ng-container matColumnDef="surname">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header="surname">Cognome</th>
+			<td mat-cell *matCellDef="let row">{{row.surname}}</td>
+			</ng-container>
+
+			<!-- Created Column -->
+			<ng-container matColumnDef="username">
+			<th mat-header-cell *matHeaderCellDef>Utente</th>
+			<td mat-cell *matCellDef="let row">{{row.username}}</td>
+			</ng-container>
+
+			<!-- Created Column -->
+			<ng-container matColumnDef="email">
+			<th mat-header-cell *matHeaderCellDef>email</th>
+			<td mat-cell *matCellDef="let row">{{row.email}}</td>
+			</ng-container>
+
+			<!-- Created Column -->
+			<ng-container matColumnDef="telephone">
+			<th mat-header-cell *matHeaderCellDef>Telephono</th>
+			<td mat-cell *matCellDef="let row">{{row.telephone}}</td>
+			</ng-container>
+
+			<!-- Created Column -->
+			<ng-container matColumnDef="mobile">
+			<th mat-header-cell *matHeaderCellDef>Cellulare</th>
+			<td mat-cell *matCellDef="let row">{{row.mobile}}</td>
+			</ng-container>
+
+
+			<ng-container matColumnDef="actions"> <mat-header-cell
+				*matHeaderCellDef> Azioni </mat-header-cell> <mat-cell
+				*matCellDef="let row">
+			<button mat-raised-button color="primary"
+				(click)="onEditClicked(row)">Edit</button>
+			<button mat-raised-button color="primary"
+				(click)="onDeleteClicked(row)">Delete</button>
+			</mat-cell> </ng-container>
+
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		</table>
+	</div>
 
 
 
-  <mat-paginator #paginator [length]="data.length" [pageIndex]="0" [pageSize]="50" [pageSizeOptions]="[25, 50, 100, 250]">
-  </mat-paginator>
+	<mat-paginator #paginator [length]="data.length" [pageIndex]="0"
+		[pageSize]="50" [pageSizeOptions]="[25, 50, 100, 250]">
+	</mat-paginator>
 </div>

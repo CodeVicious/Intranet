@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Inject, AfterViewInit} from '@angular/core';
-import {MatPaginator, MatSort, MatToolbar} from '@angular/material';
+import {MatPaginator, MatSort, MatToolbar, MatInput} from '@angular/material';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {HttpClient} from '@angular/common/http';
@@ -15,6 +15,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
 
   id: number;
   name: string;
@@ -81,5 +82,13 @@ export class UserTableComponent implements AfterViewInit, OnInit {
         return observableOf([]);
       })
       ).subscribe(data => this.data = data);
+  }
+
+  onEditClicked(id: number) {
+    console.log("EDIT: ", id);
+  }
+  
+  onDeleteClicked(id: number) {
+   
   }
 }
