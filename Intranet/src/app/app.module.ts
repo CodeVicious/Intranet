@@ -13,24 +13,10 @@ import {IntranetComponent} from './intranet/intranet.component';
 import {SignIntComponent} from './user/sign-int/sign-int.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-
-import { MatInputModule } from '@angular/material';
-import { MatMenuModule } from '@angular/material';
-import { MatPaginatorModule } from '@angular/material';
-import { MatProgressSpinnerModule } from '@angular/material';
-import { MatSortModule } from '@angular/material';
-import { MatTableModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatListModule } from '@angular/material';
-import { MatIconModule } from '@angular/material/icon';
-import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { UserTableComponent } from './user-table/user-table.component';
-
-import {MatCardModule} from '@angular/material/card';
-
-
-
-
+import {MainDashboardComponent} from './main-dashboard/main-dashboard.component';
+import {LayoutModule} from '@angular/cdk/layout';
+import {UserTableComponent} from './user-table/user-table.component';
+import {IntranetMaterialModule} from './material-module';
 
 
 @NgModule({
@@ -48,22 +34,12 @@ import {MatCardModule} from '@angular/material/card';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    MatInputModule,
-    MatTableModule,
-    MatMenuModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
-    MatIconModule,
     LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule
+    IntranetMaterialModule
+
   ],
   providers: [
-    { provide: 'API_URL', useValue: 'http://localhost:8080/api' }
+    {provide: 'API_URL', useValue: 'http://localhost:8080/api'}
   ],
   bootstrap: [AppComponent]
 
