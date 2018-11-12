@@ -17,31 +17,33 @@ import {MainDashboardComponent} from './main-dashboard/main-dashboard.component'
 import {LayoutModule} from '@angular/cdk/layout';
 import {UserTableComponent} from './user-table/user-table.component';
 import {IntranetMaterialModule} from './material-module';
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    UserComponent,
-    IntranetComponent,
-    SignIntComponent,
-    MainDashboardComponent,
-    UserTableComponent
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    LayoutModule,
-    IntranetMaterialModule
-
-  ],
-  providers: [
-    {provide: 'API_URL', useValue: 'http://localhost:8080/api'}
-  ],
-  bootstrap: [AppComponent]
-
+   declarations: [
+      AppComponent,
+      UserComponent,
+      IntranetComponent,
+      SignIntComponent,
+      MainDashboardComponent,
+      UserTableComponent,
+      MessagesComponent
+   ],
+   imports: [
+      BrowserModule,
+      BrowserAnimationsModule,
+      FormsModule,
+      AppRoutingModule,
+      HttpClientModule,
+      LayoutModule,
+      IntranetMaterialModule
+   ],
+   providers: [
+      provide
+   ],
+   bootstrap: [
+      AppComponent
+   ]
 })
 export class AppModule {}
