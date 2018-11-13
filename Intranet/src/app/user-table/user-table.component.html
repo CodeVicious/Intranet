@@ -1,8 +1,7 @@
 <div class="mat-table-user">
 
-	<!-- New part: this is the search box -->
-	<mat-input-container> <input matInput
-		placeholder="Cerca un utente" #input> </mat-input-container>
+
+
 		
 	<div class="example-loading-shade"
 		*ngIf="isLoadingResults || isRateLimitReached">
@@ -15,7 +14,7 @@
 	<div class="example-table-container">
 
 		<table mat-table [dataSource]="data" class="example-table" matSort
-			matSortActive="name" matSortDisableClear matSortDirection="asc">
+			matSortActive="surname" matSortDisableClear matSortDirection="asc">
 			<!-- Number Column -->
 			<ng-container matColumnDef="id">
 			<th mat-header-cell *matHeaderCellDef mat-sort-header="id">#</th>

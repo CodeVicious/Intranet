@@ -13,16 +13,7 @@
             "tsconfig": "${workspaceFolder}/tsconfig.json",
             "problemMatcher": [
                 "$tsc"
-            ],
-            "codemix": {
-                "lifecycle": "build",
-                "validatedExtensions": [
-                    "ts"
-                ],
-                "readyChecks": [
-                    "node_modules_ready"
-                ]
-            }
+            ]
         },
         {
             "type": "typescript",
@@ -30,16 +21,7 @@
             "option": "watch",
             "problemMatcher": [
                 "$tsc-watch"
-            ],
-            "codemix": {
-                "lifecycle": "watch",
-                "validatedExtensions": [
-                    "ts"
-                ],
-                "readyChecks": [
-                    "node_modules_ready"
-                ]
-            }
+            ]
         }
     ]
 }

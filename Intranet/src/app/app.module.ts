@@ -18,6 +18,10 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {UserTableComponent} from './user-table/user-table.component';
 import {IntranetMaterialModule} from './material-module';
 import { MessagesComponent } from './messages/messages.component';
+import { UserService } from './services/user.service';
+import { MessageService } from './services/message.service';
+import { SearchBoxContainerComponent } from './user-table/SearchBoxContainer/SearchBoxContainer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -28,7 +32,8 @@ import { MessagesComponent } from './messages/messages.component';
       SignIntComponent,
       MainDashboardComponent,
       UserTableComponent,
-      MessagesComponent
+      MessagesComponent,
+      SearchBoxContainerComponent
    ],
    imports: [
       BrowserModule,
@@ -37,10 +42,13 @@ import { MessagesComponent } from './messages/messages.component';
       AppRoutingModule,
       HttpClientModule,
       LayoutModule,
-      IntranetMaterialModule
+      IntranetMaterialModule,
+      FontAwesomeModule
    ],
    providers: [
-      provide
+    UserService,
+    MessageService,
+    { provide: "API_URL", useValue: "http://localhost:8080/api" }
    ],
    bootstrap: [
       AppComponent

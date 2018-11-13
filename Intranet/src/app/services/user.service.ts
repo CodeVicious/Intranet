@@ -1,16 +1,27 @@
 import {Injectable, Inject} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {User} from '../models/user';
 import {catchError, tap} from 'rxjs/operators';
+import { MessageService } from './message.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })    
+}
 @Injectable()
 export class UserService {
+
+  queryUrl: string;
+
   constructor(
     private http: HttpClient,
+    private messageService: MessageService,
     @Inject('API_URL') private apiUrl: string
-  ) {}
+  ) {
+    this.queryUrl = `${this.apiUrl}/user`;
+  }
 
+  /** fetch all the users with pagination an filter */
   getUsers(query: string, column: string, order: string, pageIndex: number, pageSize: number): Observable<User[]> {
     const params: string = [
       `column=${column}`,
@@ -18,23 +29,45 @@ export class UserService {
       `start=${pageSize * (pageIndex - 1)}`,
       `length=${pageSize}`
     ].join('&');
-
-
-    const queryUrl = `${this.apiUrl}/user/All?${params}`;
-    return this.http.get<User[]>(queryUrl)
+    
+    return this.http.get<User[]>(`${this.queryUrl}/All?${params}`)
       .pipe(
-      catchError(this.handleError('getHeroes', []))
+      catchError(this.handleError('getUsers', []))
       );
   }
 
+  getUser(id: number): Observable<User> {        
+    return this.http.get<User>(`${this.queryUrl}/${id}`)
+      .pipe(
+      catchError(this.handleError<User>(`getUser id=${id}`))
+      );
+  }
+
+  updateUser(user: User): Observable<any> {        
+    return this.http.put(
+      this.queryUrl,
+      user,
+      httpOptions
+      )
+      .pipe(
+      catchError(this.handleError<any>(`updateUser`))
+      );
+  }
+
+  /** POST: add a new hero to the server */
+  addUser (user: User): Observable<User> {    
+    return this.http.post<User>(this.queryUrl, user, httpOptions).pipe(
+      tap((user: User) => this.log(`added user w/ id=${user.id}`)),
+    catchError(this.handleError<User>('addUser'))
+  );
+}
+
   /** DELETE: delete the hero from the server */
   deleteUser(user: User | number): Observable<User> {
-    const id = typeof user === 'number' ? user : user.id;
-    const queryUrl = `${this.apiUrl}/user/delete//${id}`;
-
-    return this.http.delete<User>(queryUrl).pipe(
-      tap(_ => this.log(`deleted hero id=${id}`)),
-      catchError(this.handleError<User>('deleteHero'))
+    const id = typeof user === 'number' ? user : user.id;    
+    return this.http.delete<User>(`${this.queryUrl}/delete/${id}`).pipe(
+      tap(_ => this.log(`deleted user id=${id}`)),
+      catchError(this.handleError<User>('deleteUser'))
     );
   }
 
@@ -44,13 +77,17 @@ export class UserService {
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
 
-      // TODO: better job of transforming error for user consumption
-      return Observable.throw(error.json().error());
-      //this.log(`${operation} failed: ${error.message}`);
+      // TODO: better job of transforming error for user consumption      
+      this.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
-      //return of(result as T);
+      return of(result as T);
     };
   }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`UserService: ${message}`);
+}
 
 }

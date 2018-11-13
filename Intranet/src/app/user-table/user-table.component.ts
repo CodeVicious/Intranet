@@ -1,10 +1,12 @@
-import {Component, OnInit, ViewChild, Inject, AfterViewInit} from '@angular/core';
-import {MatPaginator, MatSort, MatToolbar, MatInput} from '@angular/material';
+import {Component, OnInit, ViewChild, Inject, AfterViewInit, ElementRef} from '@angular/core';
+import {MatPaginator, MatSort, MatToolbar} from '@angular/material';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {HttpClient} from '@angular/common/http';
-import {merge, of as observableOf} from 'rxjs';
+import {merge, of as observableOf, Observable} from 'rxjs';
 import {startWith, switchMap, map, catchError} from 'rxjs/operators';
+import { MessageService } from '../services/message.service';
+
 
 @Component({
   selector: 'app-user-table',
@@ -26,34 +28,19 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   mobile: number;
 
   displayedColumns: string[] = ['id', 'name', 'surname', 'username', 'email', 'telephone', 'mobile', 'actions'];
-  userService: UserService | null;
   data: User[] = [];
 
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
 
-  constructor(private http: HttpClient, @Inject('API_URL') private apiUrl: string) {}
+  constructor(
+    private http: HttpClient, 
+    private messageService: MessageService,
+    private userService : UserService,
+    @Inject('API_URL') private apiUrl: string) {}
 
-  ngOnInit() {
-
-    this.userService = new UserService(this.http, this.apiUrl);
-    this.userService!.getUsers('', 'id', 'asc', 0, 10)
-      .pipe(map(data => {
-        // Flip flag to show that loading has finished.
-        this.isLoadingResults = false;
-        this.isRateLimitReached = false;
-
-        return data;
-      }),
-      catchError(() => {
-        this.isLoadingResults = false;
-        // Catch if the GitHub API has reached its rate limit. Return empty data.
-        this.isRateLimitReached = true;
-        return observableOf([]);
-      })
-      ).subscribe(data => this.data = data);
-  }
+  ngOnInit() {}
 
   ngAfterViewInit(): void {
     // If the user changes the sort order, reset back to the first page.
@@ -89,6 +76,10 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   }
   
   onDeleteClicked(id: number) {
-   
+    this.userService.deleteUser(id);
+    this.sort.sortChange.emit();  //force refresh on delete
   }
+
+  
+
 }
