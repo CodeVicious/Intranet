@@ -71,13 +71,14 @@ export class UserTableComponent implements AfterViewInit, OnInit {
       ).subscribe(data => this.data = data);
   }
 
-  onEditClicked(id: number) {
-    console.log("EDIT: ", id);
+  onEditClicked(user: User) {
+    console.log("EDIT: ", user.id);
   }
   
-  onDeleteClicked(id: number) {
-    this.userService.deleteUser(id);
-    this.sort.sortChange.emit();  //force refresh on delete
+  onDeleteClicked(user: User) {
+    console.log(`Ciao `+user.id);
+    this.userService.deleteUser(user).subscribe();
+    //this.sort.sortChange.emit();  //force refresh on delete
   }
 
   

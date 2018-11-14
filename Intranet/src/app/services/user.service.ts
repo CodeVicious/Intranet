@@ -65,7 +65,7 @@ export class UserService {
   /** DELETE: delete the hero from the server */
   deleteUser(user: User | number): Observable<User> {
     const id = typeof user === 'number' ? user : user.id;    
-    return this.http.delete<User>(`${this.queryUrl}/delete/${id}`).pipe(
+    return this.http.delete<User>(`${this.queryUrl}/delete/${id}`).pipe(      
       tap(_ => this.log(`deleted user id=${id}`)),
       catchError(this.handleError<User>('deleteUser'))
     );
