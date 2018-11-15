@@ -1,0 +1,8 @@
+<h1 mat-dialog-title class="modalDialogTitle">{{data.title}}</h1>
+<div mat-dialog-content class="modalDialogContent">
+  <p>{{data.body}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onKOClick()" cdkFocusInitial>No Grazie</button>
+  <button mat-button (click)="onOKClick()">Ok</button>
+</div>

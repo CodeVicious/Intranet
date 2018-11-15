@@ -7,14 +7,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { IntranetComponent } from './intranet/intranet.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
-
-import {UserComponent} from './user/user.component';
+import { UserTableComponent } from './user-table/user-table.component';
  
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainDashboardComponent },
-  { path: 'user', component: UserComponent }
+  { path: 'user', component: UserTableComponent }
   ];
 
 

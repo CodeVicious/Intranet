@@ -3,14 +3,10 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 
-
-import {UserComponent} from './user/user.component';
-
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppRoutingModule} from './app-routing.module';
 import {IntranetComponent} from './intranet/intranet.component';
-import {SignIntComponent} from './user/sign-int/sign-int.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MainDashboardComponent} from './main-dashboard/main-dashboard.component';
@@ -22,23 +18,30 @@ import { UserService } from './services/user.service';
 import { MessageService } from './services/message.service';
 import { SearchBoxContainerComponent } from './user-table/SearchBoxContainer/SearchBoxContainer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ModalDialogPopupComponent } from './user-table/modalDialogPopup/modalDialogPopup.component';
+import { UserEditDialogComponent } from './user-table/UserEditDialog/UserEditDialog.component';
 
 
 @NgModule({
+   entryComponents: [
+      ModalDialogPopupComponent,
+      UserEditDialogComponent      
+   ],
    declarations: [
       AppComponent,
-      UserComponent,
-      IntranetComponent,
-      SignIntComponent,
+      IntranetComponent,      
       MainDashboardComponent,
       UserTableComponent,
       MessagesComponent,
-      SearchBoxContainerComponent
+      SearchBoxContainerComponent,
+      ModalDialogPopupComponent,
+      UserEditDialogComponent
    ],
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
       FormsModule,
+      ReactiveFormsModule,
       AppRoutingModule,
       HttpClientModule,
       LayoutModule,

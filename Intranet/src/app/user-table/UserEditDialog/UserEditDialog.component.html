@@ -1,0 +1,44 @@
+
+<h2 mat-dialog-title>{{description}}</h2>
+
+<mat-dialog-content [formGroup]="userEditform">
+      <mat-form-field>
+        <input matInput
+                id="nomeInput"
+                placeholder="Nome"               
+                [formControl]="userEditform.controls['nome']">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+              id="cognomeInput"
+              placeholder="Cognome"               
+              [formControl]="userEditform.controls['cognome']">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+            id="emailInput"
+            placeholder="e-Mail"               
+            [formControl]="userEditform.controls['email']">
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput
+          id="telefonoInput"
+          placeholder="Telefono"               
+          [formControl]="userEditform.controls['telefono']">
+</mat-form-field>
+
+<mat-form-field>
+  <input matInput
+          id="cellInput"
+          placeholder="Cellulare"               
+          [formControl]="userEditform.controls['cell']">
+</mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="onKOClick()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="onOKClick()">Save</button>
+</mat-dialog-actions>

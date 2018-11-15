@@ -1,8 +1,10 @@
+<mat-toolbar color="primary" class="UserToolBar"> <span>{{componentName}}</span> 
+	<span class="fill-remaining-space"></span>
+	<button mat-raised-button mat-button>Nuovo Utente</button>  
+</mat-toolbar>
+  
+
 <div class="mat-table-user">
-
-
-
-		
 	<div class="example-loading-shade"
 		*ngIf="isLoadingResults || isRateLimitReached">
 		<mat-spinner *ngIf="isLoadingResults"></mat-spinner>

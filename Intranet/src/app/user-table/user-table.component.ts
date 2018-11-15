@@ -1,11 +1,13 @@
-import {Component, OnInit, ViewChild, Inject, AfterViewInit, ElementRef} from '@angular/core';
-import {MatPaginator, MatSort, MatToolbar} from '@angular/material';
+import {Component, OnInit, ViewChild, Inject, AfterViewInit, ElementRef, TemplateRef} from '@angular/core';
+import {MatPaginator, MatSort, MatDialog, MatSnackBar} from '@angular/material';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {HttpClient} from '@angular/common/http';
 import {merge, of as observableOf, Observable} from 'rxjs';
 import {startWith, switchMap, map, catchError} from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
+import { ModalDialogPopupComponent } from './modalDialogPopup/modalDialogPopup.component';
+import { UserEditDialogComponent } from './UserEditDialog/UserEditDialog.component';
 
 
 @Component({
@@ -30,6 +32,8 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   displayedColumns: string[] = ['id', 'name', 'surname', 'username', 'email', 'telephone', 'mobile', 'actions'];
   data: User[] = [];
 
+  componentName: String;
+
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
@@ -38,7 +42,11 @@ export class UserTableComponent implements AfterViewInit, OnInit {
     private http: HttpClient, 
     private messageService: MessageService,
     private userService : UserService,
-    @Inject('API_URL') private apiUrl: string) {}
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    @Inject('API_URL') private apiUrl: string) {
+      this.componentName = "Gestione Utenti"
+    }
 
   ngOnInit() {}
 
@@ -72,13 +80,32 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   }
 
   onEditClicked(user: User) {
-    console.log("EDIT: ", user.id);
+    const dialogRef = this.dialog.open(UserEditDialogComponent,
+      {
+        width: '450px',
+        data: {
+          user: user
+        }
+      });   
   }
   
   onDeleteClicked(user: User) {
-    console.log(`Ciao `+user.id);
-    this.userService.deleteUser(user).subscribe();
-    //this.sort.sortChange.emit();  //force refresh on delete
+    const dialogRef = this.dialog.open(ModalDialogPopupComponent,
+    {
+      width: '350px',
+      data: {
+        title: "ATTENZIONE Operazione irreversibile",
+        body:`Sei sicuro di voler elimare l'utente [${user.id}] ${user.name} - ${user.surname} ?` } 
+      });
+
+    dialogRef.afterClosed().subscribe(result => {      
+      if(result=="OK")
+        this.userService.deleteUser(user).pipe(
+        map(()=>{this.sort.sortChange.emit()}),
+        map(()=>{this.snackBar.open(`Utente ${user.id}: - ${user.name} - ${user.surname}`, "ELIMINATO!", {duration: 2000})})
+        ).subscribe();
+      });   
+    
   }
 
   
