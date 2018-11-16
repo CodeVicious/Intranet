@@ -5,7 +5,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 export interface DialogData {
-  user: User;  
+  description: string;
+  user: User;
 }
 
 @Component({
@@ -20,24 +21,25 @@ export class UserEditDialogComponent implements OnInit {
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<UserEditDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) { 
+  ) {
     this.userEditform = fb.group({
-        'nome': data.user.name,
-        'cognome': data.user.surname,
-        'email': data.user.email,
-        'telefono': data.user.telephone,
-        'cell': data.user.mobile
-      });
+      'nome': data.user.name,
+      'cognome': data.user.surname,
+      'email': data.user.email,
+      'telefono': data.user.telephone,
+      'cell': data.user.mobile,
+      'pw': data.user.password
+    });
   }
 
   ngOnInit() {
-    
+
   }
 
   onKOClick(): void {
     this.dialogRef.close('KO');
   }
-  onOKClick(): void{
+  onOKClick(): void {
     this.dialogRef.close('OK');
   }
 

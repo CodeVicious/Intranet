@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild, Inject, AfterViewInit, ElementRef, TemplateRef} from '@angular/core';
-import {MatPaginator, MatSort, MatDialog, MatSnackBar} from '@angular/material';
-import {User} from '../models/user';
-import {UserService} from '../services/user.service';
-import {HttpClient} from '@angular/common/http';
-import {merge, of as observableOf, Observable} from 'rxjs';
-import {startWith, switchMap, map, catchError} from 'rxjs/operators';
+import { Component, OnInit, ViewChild, Inject, AfterViewInit, ElementRef, TemplateRef } from '@angular/core';
+import { MatPaginator, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
+import { HttpClient } from '@angular/common/http';
+import { merge, of as observableOf, Observable } from 'rxjs';
+import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
 import { ModalDialogPopupComponent } from './modalDialogPopup/modalDialogPopup.component';
 import { UserEditDialogComponent } from './UserEditDialog/UserEditDialog.component';
@@ -39,16 +39,16 @@ export class UserTableComponent implements AfterViewInit, OnInit {
   isRateLimitReached = false;
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private messageService: MessageService,
-    private userService : UserService,
+    private userService: UserService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     @Inject('API_URL') private apiUrl: string) {
-      this.componentName = "Gestione Utenti"
-    }
+    this.componentName = "Gestione Utenti"
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit(): void {
     // If the user changes the sort order, reset back to the first page.
@@ -56,58 +56,60 @@ export class UserTableComponent implements AfterViewInit, OnInit {
 
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(
-      startWith({}),
-      switchMap(() => {
-        this.isLoadingResults = true;
-        // tslint:disable-next-line:no-non-null-assertion
-        return this.userService!.getUsers
-          ('', this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
-      }),
-      map(data => {
-        // Flip flag to show that loading has finished.
-        this.isLoadingResults = false;
-        this.isRateLimitReached = false;
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          // tslint:disable-next-line:no-non-null-assertion
+          return this.userService!.getUsers
+            ('', this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
+        }),
+        map(data => {
+          // Flip flag to show that loading has finished.
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
 
-        return data;
-      }),
-      catchError(() => {
-        this.isLoadingResults = false;
-        // Catch if the GitHub API has reached its rate limit. Return empty data.
-        this.isRateLimitReached = true;
-        return observableOf([]);
-      })
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          // Catch if the GitHub API has reached its rate limit. Return empty data.
+          this.isRateLimitReached = true;
+          return observableOf([]);
+        })
       ).subscribe(data => this.data = data);
   }
 
   onEditClicked(user: User) {
     const dialogRef = this.dialog.open(UserEditDialogComponent,
       {
-        width: '450px',
+        width: '450px',        
         data: {
+          description: 'Modifica utente',
           user: user
         }
-      });   
+      });
   }
-  
+
   onDeleteClicked(user: User) {
     const dialogRef = this.dialog.open(ModalDialogPopupComponent,
-    {
-      width: '350px',
-      data: {
-        title: "ATTENZIONE Operazione irreversibile",
-        body:`Sei sicuro di voler elimare l'utente [${user.id}] ${user.name} - ${user.surname} ?` } 
+      {
+        width: '350px',
+        data: {
+          title: "ATTENZIONE Operazione irreversibile",
+          body: `Sei sicuro di voler elimare l'utente [${user.id}] ${user.name} - ${user.surname} ?`
+        }
       });
 
-    dialogRef.afterClosed().subscribe(result => {      
-      if(result=="OK")
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == "OK")
         this.userService.deleteUser(user).pipe(
-        map(()=>{this.sort.sortChange.emit()}),
-        map(()=>{this.snackBar.open(`Utente ${user.id}: - ${user.name} - ${user.surname}`, "ELIMINATO!", {duration: 2000})})
+          map(() => { this.sort.sortChange.emit() }),
+          map(() => { this.snackBar.open(`Utente ${user.id}: - ${user.name} - ${user.surname}`, "ELIMINATO!", { duration: 2000 }) })
         ).subscribe();
-      });   
-    
+    });
+
   }
 
-  
+
 
 }

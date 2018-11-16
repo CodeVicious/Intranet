@@ -1,44 +1,64 @@
+<div class="userEditContainer">
+  <h2 mat-dialog-title>{{data.description}}</h2>
+  <mat-dialog-content id="userEditDialg" [formGroup]="userEditform">
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Nome utente</mat-label>
+        <input matInput id="nomeInput" placeholder="Nome" [formControl]="userEditform.controls['nome']">
+        <mat-icon matSuffix>how_to_reg</mat-icon>
+        <mat-hint>inserire il nome dell'utente</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>Cognome utente</mat-label>
+        <input matInput id="cognomeInput" placeholder="Cognome" [formControl]="userEditform.controls['cognome']">
+        <mat-icon matSuffix>how_to_reg</mat-icon>
+        <mat-hint>inserire il cognome dell'utente</mat-hint>
 
-<h2 mat-dialog-title>{{description}}</h2>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="standard">
+        <mat-label>email</mat-label>
+        <input matInput id="emailInput" type="email" placeholder="e-Mail" [formControl]="userEditform.controls['email']">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-hint>inserire la mal dell'utente</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
 
-<mat-dialog-content [formGroup]="userEditform">
-      <mat-form-field>
-        <input matInput
-                id="nomeInput"
-                placeholder="Nome"               
-                [formControl]="userEditform.controls['nome']">
-    </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Telefono</mat-label>
+        <input matInput id="telefonoInput" type="tel" placeholder="Telefono" [formControl]="userEditform.controls['telefono']">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>inserire il telefono</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
 
-    <mat-form-field>
-      <input matInput
-              id="cognomeInput"
-              placeholder="Cognome"               
-              [formControl]="userEditform.controls['cognome']">
-  </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Cellulare (RAM)</mat-label>
+        <input matInput id="cellInput" type="tel" placeholder="Cellulare" [formControl]="userEditform.controls['cell']">
+        <mat-icon matSuffix>phonelink_ring</mat-icon>
+        <mat-hint>inserire il cellulare</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
 
-  <mat-form-field>
-    <input matInput
-            id="emailInput"
-            placeholder="e-Mail"               
-            [formControl]="userEditform.controls['email']">
-</mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>PASSWORD</mat-label>
+        <input matInput id="pwInput" type="password" placeholder="PASSWORD" [formControl]="userEditform.controls['pw']">
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-hint>inserire la passoword (per cambiarla)</mat-hint>
+      </mat-form-field>
+    </p>
+    <p>
 
-<mat-form-field>
-  <input matInput
-          id="telefonoInput"
-          placeholder="Telefono"               
-          [formControl]="userEditform.controls['telefono']">
-</mat-form-field>
+  </mat-dialog-content>
 
-<mat-form-field>
-  <input matInput
-          id="cellInput"
-          placeholder="Cellulare"               
-          [formControl]="userEditform.controls['cell']">
-</mat-form-field>
-</mat-dialog-content>
-
-<mat-dialog-actions>
-    <button class="mat-raised-button"(click)="onKOClick()">Close</button>
-    <button class="mat-raised-button mat-primary"(click)="onOKClick()">Save</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button class="mat-raised-button" (click)="onKOClick()">Close</button>
+    <button class="mat-raised-button mat-primary" (click)="onOKClick()">Save</button>
+  </mat-dialog-actions>
+</div>
