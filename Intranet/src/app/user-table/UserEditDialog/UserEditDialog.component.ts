@@ -23,6 +23,8 @@ export class UserEditDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     this.userEditform = fb.group({
+      'id': data.user.id,
+      'username': data.user.username,
       'nome': data.user.name,
       'cognome': data.user.surname,
       'email': data.user.email,
@@ -33,14 +35,17 @@ export class UserEditDialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userEditform.controls['id'].disable();
+    this.userEditform.controls['username'].disable();
+    this.userEditform.controls['email'].disable();
 
   }
 
   onKOClick(): void {
-    this.dialogRef.close('KO');
+    this.dialogRef.close();
   }
   onOKClick(): void {
-    this.dialogRef.close('OK');
+    this.dialogRef.close(this.userEditform.value);
   }
 
 }

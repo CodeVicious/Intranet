@@ -88,6 +88,22 @@ export class UserTableComponent implements AfterViewInit, OnInit {
           user: user
         }
       });
+
+      dialogRef.afterClosed().subscribe(result => {    
+        console.log(result);    
+        if (result){
+          user.name = result.nome;
+          user.surname = result.cognome;
+          user.telephone = result.telefono;
+          user.mobile = result.cell;
+          user.password = result.pw;
+
+          this.userService.updateUser(user).pipe(
+            map(() => { this.sort.sortChange.emit() }),
+            map(() => { this.snackBar.open(`Utente ${user.id}: - ${user.name} - ${user.surname}`, "AGGIORNATO!", { duration: 2000 }) })
+          ).subscribe();
+        }
+      });
   }
 
   onDeleteClicked(user: User) {

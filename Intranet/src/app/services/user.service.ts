@@ -6,8 +6,9 @@ import {catchError, tap} from 'rxjs/operators';
 import { MessageService } from './message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })    
-}
+  headers: new HttpHeaders(
+    { 'Content-Type': 'application/json'})    
+};
 @Injectable()
 export class UserService {
 
@@ -43,13 +44,15 @@ export class UserService {
       );
   }
 
-  updateUser(user: User): Observable<any> {        
+  updateUser(user: User): Observable<any> {
+    console.log(user);      
     return this.http.put(
-      this.queryUrl,
+      `${this.queryUrl}/update/${user.id}`,
       user,
       httpOptions
       )
       .pipe(
+        tap(_ => this.log(`updated uesr id=${user.id}`)),
       catchError(this.handleError<any>(`updateUser`))
       );
   }
@@ -76,7 +79,7 @@ export class UserService {
 
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-
+      console.error(`${operation} failed: ${error.message}`); // log to console instead
       // TODO: better job of transforming error for user consumption      
       this.log(`${operation} failed: ${error.message}`);
 

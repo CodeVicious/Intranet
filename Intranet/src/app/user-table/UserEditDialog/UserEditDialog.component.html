@@ -1,9 +1,26 @@
 <div class="userEditContainer">
   <h2 mat-dialog-title>{{data.description}}</h2>
   <mat-dialog-content id="userEditDialg" [formGroup]="userEditform">
+      <p>
+          <mat-form-field appearance="standard">
+            <mat-label>ID </mat-label>
+            <input matInput id="idInput" placeholder="id" [formControl]="userEditform.controls['id']">
+            <mat-icon matSuffix>how_to_reg</mat-icon>
+            <mat-hint>inserire il nome dell'utente</mat-hint>
+          </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+              <mat-label>Username</mat-label>
+              <input matInput id="usernameInput" placeholder="Username" [formControl]="userEditform.controls['username']">
+              <mat-icon matSuffix>how_to_reg</mat-icon>
+              <mat-hint>inserire il nome dell'utente</mat-hint>
+            </mat-form-field>
+          </p>
+
     <p>
       <mat-form-field appearance="standard">
-        <mat-label>Nome utente</mat-label>
+        <mat-label>Nome </mat-label>
         <input matInput id="nomeInput" placeholder="Nome" [formControl]="userEditform.controls['nome']">
         <mat-icon matSuffix>how_to_reg</mat-icon>
         <mat-hint>inserire il nome dell'utente</mat-hint>
@@ -11,7 +28,7 @@
     </p>
     <p>
       <mat-form-field appearance="standard">
-        <mat-label>Cognome utente</mat-label>
+        <mat-label>Cognome </mat-label>
         <input matInput id="cognomeInput" placeholder="Cognome" [formControl]="userEditform.controls['cognome']">
         <mat-icon matSuffix>how_to_reg</mat-icon>
         <mat-hint>inserire il cognome dell'utente</mat-hint>
