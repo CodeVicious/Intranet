@@ -20,6 +20,7 @@ import { SearchBoxContainerComponent } from './user-table/SearchBoxContainer/Sea
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalDialogPopupComponent } from './user-table/modalDialogPopup/modalDialogPopup.component';
 import { UserEditDialogComponent } from './user-table/UserEditDialog/UserEditDialog.component';
+import { UserDetailComponentComponent } from './user-table/UserDetailComponent/UserDetailComponent.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UserEditDialogComponent } from './user-table/UserEditDialog/UserEditDia
       MessagesComponent,
       SearchBoxContainerComponent,
       ModalDialogPopupComponent,
-      UserEditDialogComponent
+      UserEditDialogComponent,
+      UserDetailComponentComponent
    ],
    imports: [
       BrowserModule,
@@ -45,7 +47,7 @@ import { UserEditDialogComponent } from './user-table/UserEditDialog/UserEditDia
       AppRoutingModule,
       HttpClientModule,
       LayoutModule,
-      IntranetMaterialModule,
+      IntranetMaterialModule,      
       FontAwesomeModule
    ],
    providers: [

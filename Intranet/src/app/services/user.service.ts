@@ -59,7 +59,12 @@ export class UserService {
 
   /** POST: add a new hero to the server */
   addUser (user: User): Observable<User> {    
-    return this.http.post<User>(this.queryUrl, user, httpOptions).pipe(
+    return this.http.post<User>(
+      `${this.queryUrl}/add`, 
+      user,
+      httpOptions
+      )
+      .pipe(
       tap((user: User) => this.log(`added user w/ id=${user.id}`)),
     catchError(this.handleError<User>('addUser'))
   );

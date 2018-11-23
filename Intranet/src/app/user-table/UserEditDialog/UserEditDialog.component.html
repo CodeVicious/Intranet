@@ -5,8 +5,7 @@
           <mat-form-field appearance="standard">
             <mat-label>ID </mat-label>
             <input matInput id="idInput" placeholder="id" [formControl]="userEditform.controls['id']">
-            <mat-icon matSuffix>how_to_reg</mat-icon>
-            <mat-hint>inserire il nome dell'utente</mat-hint>
+            <mat-icon matSuffix>how_to_reg</mat-icon>            
           </mat-form-field>
         </p>
         <p>
@@ -21,7 +20,7 @@
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Nome </mat-label>
-        <input matInput id="nomeInput" placeholder="Nome" [formControl]="userEditform.controls['nome']">
+        <input matInput id="nomeInput" placeholder="Nome" [formControl]="userEditform.controls['name']">
         <mat-icon matSuffix>how_to_reg</mat-icon>
         <mat-hint>inserire il nome dell'utente</mat-hint>
       </mat-form-field>
@@ -29,7 +28,7 @@
     <p>
       <mat-form-field appearance="standard">
         <mat-label>Cognome </mat-label>
-        <input matInput id="cognomeInput" placeholder="Cognome" [formControl]="userEditform.controls['cognome']">
+        <input matInput id="cognomeInput" placeholder="Cognome" [formControl]="userEditform.controls['surname']">
         <mat-icon matSuffix>how_to_reg</mat-icon>
         <mat-hint>inserire il cognome dell'utente</mat-hint>
 
@@ -47,7 +46,7 @@
 
       <mat-form-field appearance="standard">
         <mat-label>Telefono</mat-label>
-        <input matInput id="telefonoInput" type="tel" placeholder="Telefono" [formControl]="userEditform.controls['telefono']">
+        <input matInput id="telefonoInput" type="tel" placeholder="Telefono" [formControl]="userEditform.controls['telephone']">
         <mat-icon matSuffix>phone</mat-icon>
         <mat-hint>inserire il telefono</mat-hint>
       </mat-form-field>
@@ -56,7 +55,7 @@
 
       <mat-form-field appearance="standard">
         <mat-label>Cellulare (RAM)</mat-label>
-        <input matInput id="cellInput" type="tel" placeholder="Cellulare" [formControl]="userEditform.controls['cell']">
+        <input matInput id="cellInput" type="tel" placeholder="Cellulare" [formControl]="userEditform.controls['mobile']">
         <mat-icon matSuffix>phonelink_ring</mat-icon>
         <mat-hint>inserire il cellulare</mat-hint>
       </mat-form-field>
@@ -65,7 +64,7 @@
 
       <mat-form-field appearance="standard">
         <mat-label>PASSWORD</mat-label>
-        <input matInput id="pwInput" type="password" placeholder="PASSWORD" [formControl]="userEditform.controls['pw']">
+        <input matInput id="pwInput" type="password" placeholder="PASSWORD" [formControl]="userEditform.controls['password']">
         <mat-icon matSuffix>lock</mat-icon>
         <mat-hint>inserire la passoword (per cambiarla)</mat-hint>
       </mat-form-field>

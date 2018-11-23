@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="UserToolBar"> <span>{{componentName}}</span> 
 	<span class="fill-remaining-space"></span>
-	<button mat-raised-button mat-button>Nuovo Utente</button>  
+	<button (click)="onNewUserClick()" mat-raised-button mat-button>Nuovo Utente</button>  
 </mat-toolbar>
   
 
@@ -63,10 +63,12 @@
 			<ng-container matColumnDef="actions"> <mat-header-cell
 				*matHeaderCellDef> Azioni </mat-header-cell> <mat-cell
 				*matCellDef="let row">
-			<button mat-raised-button color="primary"
+			<button mat-mini-fab color="primary"
 				(click)="onEditClicked(row)">Edit</button>
-			<button mat-raised-button color="primary"
+			<button mat-mini-fab color="accent"
 				(click)="onDeleteClicked(row)">Delete</button>
+			<button mat-mini-fab color="accent"
+				routerLink="/user/{{row.id}}" >Zoom</button>
 			</mat-cell> </ng-container>
 
 			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
