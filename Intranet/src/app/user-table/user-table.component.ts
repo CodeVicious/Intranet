@@ -85,7 +85,24 @@ export class UserTableComponent implements AfterViewInit, OnInit {
         width: '450px',        
         data: {
           description: 'Modifica utente',
-          user: user
+          user: user,
+          isEdit: true          
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {    
+        console.log(result);    
+        if (result){
+          user.name = result.name;
+          user.surname = result.surname;
+          user.telephone = result.telephone;
+          user.mobile = result.mobile;
+          user.password = result.password;
+
+          this.userService.updateUser(user).pipe(
+            map(() => { this.sort.sortChange.emit() }),
+            map(() => { this.snackBar.open(`Utente ${user.id}: - ${user.name} - ${user.surname}`, "AGGIORNATO!", { duration: 2000 }) })
+          ).subscribe();
         }
       });
   }
@@ -99,7 +116,7 @@ export class UserTableComponent implements AfterViewInit, OnInit {
           body: `Sei sicuro di voler elimare l'utente [${user.id}] ${user.name} - ${user.surname} ?`
         }
       });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result == "OK")
         this.userService.deleteUser(user).pipe(
@@ -107,9 +124,27 @@ export class UserTableComponent implements AfterViewInit, OnInit {
           map(() => { this.snackBar.open(`Utente ${user.id}: - ${user.name} - ${user.surname}`, "ELIMINATO!", { duration: 2000 }) })
         ).subscribe();
     });
-
   }
 
+  onNewUserClick(){
+    const dialogRef = this.dialog.open(UserEditDialogComponent,
+      {
+        width: '450px',        
+        data: {
+          description: 'Modifica utente',
+          user: null,
+          isEdit: false          
+        }
+      });
 
-
+      dialogRef.afterClosed().subscribe(result => {    
+        console.error(result);    
+        if (result){            
+            this.userService.addUser(result).pipe(
+            map(() => { this.sort.sortChange.emit() }),
+            map(() => { this.snackBar.open(`Utente ${result.id}: - ${result.name} - ${result.surname}`, "INSERITO!", { duration: 2000 }) })
+          ).subscribe();
+        }
+      });
+  }
 }

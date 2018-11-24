@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export interface DialogData {
   description: string;
   user: User;
+  isEdit: boolean;
 }
 
 @Component({
@@ -19,28 +20,51 @@ export class UserEditDialogComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<UserEditDialogComponent>,
+    private dialogRef: MatDialogRef<UserEditDialogComponent>,    
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
+
+    if(this.data.isEdit){
     this.userEditform = fb.group({
-      'nome': data.user.name,
-      'cognome': data.user.surname,
+      'id': data.user.id,
+      'username': data.user.username,
+      'name': data.user.name,
+      'surname': data.user.surname,
       'email': data.user.email,
-      'telefono': data.user.telephone,
-      'cell': data.user.mobile,
-      'pw': data.user.password
+      'telephone': data.user.telephone,
+      'mobile': data.user.mobile,
+      'password': data.user.password
     });
+  }
+  else{
+    this.userEditform = fb.group({
+    'id': 0,
+    'username': [''],
+    'name': [''],
+    'surname': [''],
+    'email': [''],
+    'telephone': [''],
+    'mobile': [''],
+    'password': ['']
+    });
+  }
   }
 
   ngOnInit() {
+    this.userEditform.controls['id'].disable();
+    
+    if(this.data.isEdit){    
+    this.userEditform.controls['username'].disable();
+    this.userEditform.controls['email'].disable();
+    } 
 
   }
 
   onKOClick(): void {
-    this.dialogRef.close('KO');
+    this.dialogRef.close();
   }
   onOKClick(): void {
-    this.dialogRef.close('OK');
+    this.dialogRef.close(this.userEditform.value);
   }
 
 }
