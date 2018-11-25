@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {AppComponent} from './app.component';
 
@@ -21,23 +22,27 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalDialogPopupComponent } from './user-table/modalDialogPopup/modalDialogPopup.component';
 import { UserEditDialogComponent } from './user-table/UserEditDialog/UserEditDialog.component';
 import { UserDetailComponentComponent } from './user-table/UserDetailComponent/UserDetailComponent.component';
+import { UserRolesComponent } from './user-table/UserDetailComponent/userRoles/userRoles.component';
+import { UserSectorsComponent } from './user-table/UserDetailComponent/userSectors/userSectors.component';
 
 
 @NgModule({
    entryComponents: [
       ModalDialogPopupComponent,
-      UserEditDialogComponent      
+      UserEditDialogComponent
    ],
    declarations: [
       AppComponent,
-      IntranetComponent,      
+      IntranetComponent,
       MainDashboardComponent,
       UserTableComponent,
       MessagesComponent,
       SearchBoxContainerComponent,
       ModalDialogPopupComponent,
       UserEditDialogComponent,
-      UserDetailComponentComponent
+      UserDetailComponentComponent,
+      UserRolesComponent,
+      UserSectorsComponent
    ],
    imports: [
       BrowserModule,
@@ -47,13 +52,14 @@ import { UserDetailComponentComponent } from './user-table/UserDetailComponent/U
       AppRoutingModule,
       HttpClientModule,
       LayoutModule,
-      IntranetMaterialModule,      
-      FontAwesomeModule
+      IntranetMaterialModule,
+      FontAwesomeModule,
+      FlexLayoutModule 
    ],
    providers: [
     UserService,
     MessageService,
-    { provide: "API_URL", useValue: "http://localhost:8080/api" }
+    { provide: 'API_URL', useValue: 'http://localhost:8080/api' }
    ],
    bootstrap: [
       AppComponent

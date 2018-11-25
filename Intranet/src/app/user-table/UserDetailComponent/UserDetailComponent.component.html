@@ -1,10 +1,30 @@
-<div *ngIf="user">
-    <h2>{{user.name | uppercase}} Details</h2>
-    <div><span>id: </span>{{iser.id}}</div>
-    <div>
-      <label>name:
-        <input [(ngModel)]="user.name" placeholder="name"/>
-      </label>
+
+<div class="main-container"
+fxLayout="row wrap">
+
+    <div fxFlex="30%" ngxSplitArea>
+        <div *ngIf="user" class="UserProfile">
+            <div>
+            <h2>{{user.name | uppercase}} Details</h2>
+           <span>id: </span>{{user.id}}
+
+              <label>name:
+                <input [(ngModel)]="user.name" placeholder="name"/>
+              </label>
+
+            <button (click)="goBack()">go back</button>
+            <mat-divider [inset]="true"></mat-divider>
+            </div>
+
+          </div>
     </div>
-    <button (click)="goBack()">go back</button>
-  </div>
+    <div fxFlex="5px">
+      <app-userRoles></app-userRoles>
+    </div>
+    <div fxFlex="70%" ngxSplitArea>
+      <app-userSectors></app-userSectors>
+    </div>
+
+</div>
+
+
