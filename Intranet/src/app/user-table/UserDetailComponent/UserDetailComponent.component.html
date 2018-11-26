@@ -1,30 +1,49 @@
-
-<div class="main-container"
-fxLayout="row wrap">
-
-    <div fxFlex="30%" ngxSplitArea>
-        <div *ngIf="user" class="UserProfile">
-            <div>
-            <h2>{{user.name | uppercase}} Details</h2>
-           <span>id: </span>{{user.id}}
-
-              <label>name:
-                <input [(ngModel)]="user.name" placeholder="name"/>
-              </label>
-
-            <button (click)="goBack()">go back</button>
-            <mat-divider [inset]="true"></mat-divider>
-            </div>
-
-          </div>
-    </div>
-    <div fxFlex="5px">
-      <app-userRoles></app-userRoles>
-    </div>
-    <div fxFlex="70%" ngxSplitArea>
-      <app-userSectors></app-userSectors>
-    </div>
+<div *ngIf="user" class="container" fxFlexFill fxLayout="row" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="40" class="UserProfile">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{user.name | uppercase}} - {{user.surname | uppercase}}</mat-card-title>
+        <mat-card-subtitle>ID: {{user.id}} </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-divider [inset]="true"></mat-divider>
+        <p>
+          User Name: <b>{{user.username}}</b>
+        </p>
+        <p>
+          eMail: <b>{{user.email}}</b>
+        </p>
+        <p>
+          Telefono: <b>{{user.telephone}}</b>
+        </p>
+        <p>
+          Cellulare: <b>{{user.mobile}}</b>
+        </p>
+        <button (click)="goBack()">go back</button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="35">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>ruoli</mat-card-title>
+        <mat-card-subtitle>permessi assegnati </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <app-userRoles></app-userRoles>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex="35" ngxSplitArea>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>settori</mat-card-title>
+        <mat-card-subtitle>settori di appartenenza </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <app-userSectors></app-userSectors>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
 </div>
-
-
