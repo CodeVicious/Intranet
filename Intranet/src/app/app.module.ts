@@ -24,6 +24,7 @@ import { UserEditDialogComponent } from './user-table/UserEditDialog/UserEditDia
 import { UserDetailComponentComponent } from './user-table/UserDetailComponent/UserDetailComponent.component';
 import { UserRolesComponent } from './user-table/UserDetailComponent/userRoles/userRoles.component';
 import { UserSectorsComponent } from './user-table/UserDetailComponent/userSectors/userSectors.component';
+import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UserSectorsComponent } from './user-table/UserDetailComponent/userSecto
       UserEditDialogComponent,
       UserDetailComponentComponent,
       UserRolesComponent,
-      UserSectorsComponent
+      UserSectorsComponent,
+      jqxTreeComponent
    ],
    imports: [
       BrowserModule,
@@ -54,7 +56,7 @@ import { UserSectorsComponent } from './user-table/UserDetailComponent/userSecto
       LayoutModule,
       IntranetMaterialModule,
       FontAwesomeModule,
-      FlexLayoutModule 
+      FlexLayoutModule      
    ],
    providers: [
     UserService,
@@ -63,6 +65,6 @@ import { UserSectorsComponent } from './user-table/UserDetailComponent/userSecto
    ],
    bootstrap: [
       AppComponent
-   ]
+   ] 
 })
 export class AppModule {}
