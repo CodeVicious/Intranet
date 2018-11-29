@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, of } from 'rxjs';
+import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree';
 
 export class SectorNode {
   children: SectorNode[];
@@ -17,6 +18,8 @@ export class SectorNode {
 
 
 export class UserSectorsComponent {
+  @ViewChild('myTree') myTree: jqxTreeComponent; 
+  
   data: any[] = [
     {
       'id': '2',
@@ -121,4 +124,8 @@ export class UserSectorsComponent {
   // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter 
   // specifies the mapping between the 'text' and 'label' fields.  
   records: any = this.dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label' }]);
+
+  DragEnd($event){
+    console.log(this.myTree.getItems());
+  }
 }
