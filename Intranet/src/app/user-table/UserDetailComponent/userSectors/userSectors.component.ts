@@ -21,12 +21,7 @@ export class UserSectorsComponent {
   @ViewChild('myTree') myTree: jqxTreeComponent; 
   
   data: any[] = [
-    {
-      'id': '2',
-      'parentid': '1',
-      'text': 'Hot Chocolate',
-      'value': '$2.3'
-    }, {
+     {
       'id': '3',
       'parentid': '1',
       'text': 'Peppermint Hot Chocolate',
@@ -78,7 +73,7 @@ export class UserSectorsComponent {
       'value': '$2.3'
     }, {
       'id': '12',
-      'text': 'Frappuccino',
+      'text': 'Frappuccino', 
       'parentid': '-1'
     }, {
       'id': '13',
@@ -104,6 +99,11 @@ export class UserSectorsComponent {
       'id': '14',
       'text': 'Caffe Vanilla Frappuccino Light',
       'parentid': '12',
+      'value': '$2.3'
+    },{
+      'id': '2',
+      'parentid': '6',
+      'text': 'Hot Chocolate',
       'value': '$2.3'
     }]
   // prepare the data
