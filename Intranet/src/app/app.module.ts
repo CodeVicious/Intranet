@@ -25,6 +25,8 @@ import { UserDetailComponentComponent } from './user-table/UserDetailComponent/U
 import { UserRolesComponent } from './user-table/UserDetailComponent/userRoles/userRoles.component';
 import { UserSectorsComponent } from './user-table/UserDetailComponent/userSectors/userSectors.component';
 import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree';
+import { RolesService } from './services/roles.service';
+import { SectorsService } from './services/sectors.service';
 
 
 @NgModule({
@@ -60,6 +62,8 @@ import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree
    ],
    providers: [
     UserService,
+    RolesService,
+    SectorsService,
     MessageService,
     { provide: 'API_URL', useValue: 'http://localhost:8080/api' }
    ],

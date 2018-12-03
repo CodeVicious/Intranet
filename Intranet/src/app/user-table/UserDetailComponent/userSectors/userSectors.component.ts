@@ -3,6 +3,9 @@ import { MatTreeNestedDataSource } from '@angular/material';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { BehaviorSubject, of } from 'rxjs';
 import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree';
+import { SectorsService } from '../../../services/sectors.service';
+import { MessageService } from '../../../services/message.service';
+import { HttpClient } from '@angular/common/http';
 
 export class SectorNode {
   children: SectorNode[];
@@ -17,115 +20,52 @@ export class SectorNode {
 })
 
 
-export class UserSectorsComponent {
-  @ViewChild('myTree') myTree: jqxTreeComponent; 
-  
-  data: any[] = [
-     {
-      'id': '3',
-      'parentid': '1',
-      'text': 'Peppermint Hot Chocolate',
-      'value': '$2.3'
-    }, {
-      'id': '4',
-      'parentid': '1',
-      'text': 'Salted Caramel Hot Chocolate',
-      'value': '$2.3'
-    }, {
-      'id': '5',
-      'parentid': '1',
-      'text': 'White Hot Chocolate',
-      'value': '$2.3'
-    }, {
-      'text': 'Chocolate Beverage',
-      'id': '1',
-      'parentid': '-1',
-      'value': '$2.3'
-    }, {
-      'id': '6',
-      'text': 'Espresso Beverage',
-      'parentid': '-1',
-      'value': '$2.3'
-    }, {
-      'id': '7',
-      'parentid': '6',
-      'text': 'Caffe Americano',
-      'value': '$2.3'
-    }, {
-      'id': '8',
-      'text': 'Caffe Latte',
-      'parentid': '6',
-      'value': '$2.3'
-    }, {
-      'id': '9',
-      'text': 'Caffe Mocha',
-      'parentid': '6',
-      'value': '$2.3'
-    }, {
-      'id': '10',
-      'text': 'Cappuccino',
-      'parentid': '6',
-      'value': '$2.3'
-    }, {
-      'id': '11',
-      'text': 'Pumpkin Spice Latte',
-      'parentid': '6',
-      'value': '$2.3'
-    }, {
-      'id': '12',
-      'text': 'Frappuccino', 
-      'parentid': '-1'
-    }, {
-      'id': '13',
-      'text': 'Caffe Vanilla Frappuccino',
-      'parentid': '12',
-      'value': '$2.3'
-    }, {
-      'id': '15',
-      'text': '450 calories',
-      'parentid': '13',
-      'value': '$2.3'
-    }, {
-      'id': '16',
-      'text': '16g fat',
-      'parentid': '13',
-      'value': '$2.3'
-    }, {
-      'id': '17',
-      'text': '13g protein',
-      'parentid': '13',
-      'value': '$2.3'
-    }, {
-      'id': '14',
-      'text': 'Caffe Vanilla Frappuccino Light',
-      'parentid': '12',
-      'value': '$2.3'
-    },{
-      'id': '2',
-      'parentid': '6',
-      'text': 'Hot Chocolate',
-      'value': '$2.3'
-    }]
-  // prepare the data
-  source = {
-    datatype: 'json',
-    datafields: [
-      { name: 'id' },
-      { name: 'parentid' },
-      { name: 'text' },
-      { name: 'value' }
-    ],
-    id: 'id',
-    localdata: this.data
-  };
-  // create data adapter & perform Data Binding.
-  dataAdapter = new jqx.dataAdapter(this.source, { autoBind: true });
-  // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents 
-  // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter 
-  // specifies the mapping between the 'text' and 'label' fields.  
-  records: any = this.dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', [{ name: 'text', map: 'label' }]);
+export class UserSectorsComponent implements OnInit {
+  ngOnInit(): void {
 
-  DragEnd($event){
-    console.log(this.myTree.getItems());
   }
+  @ViewChild('myTree') myTree: jqxTreeComponent;
+ 
+  dataAdapter: any;
+  records: any;
+  // prepare the data
+  source: any;
+
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService,
+    private sectorService: SectorsService
+  ) { }
+ 
+  ngAfterViewInit(): void {
+    this.sectorService.getSectors().subscribe(data => {
+      this.source = {
+        datatype: 'json',
+        datafields: [
+          { name: 'id' },
+          { name: 'parentid' },
+          { name: 'sector' }
+        ],
+        id: 'id',
+        localdata: data
+      };
+      
+      
+      console.log(this.source.localdata);
+      // create data adapter & perform Data Binding.
+      this.dataAdapter = new jqx.dataAdapter(this.source, { autoBind: true });
+      // get the tree items. The first parameter is the item's id. The second parameter is the parent item's id. The 'items' parameter represents 
+      // the sub items collection name. Each jqxTree item has a 'label' property, but in the JSON data, we have a 'text' field. The last parameter 
+      // specifies the mapping between the 'text' and 'label' fields.  
+      this.records = this.dataAdapter.getRecordsHierarchy('id', 'parentid', 'items', 
+      [{ name: 'sector', map: 'label' }]);
+      console.log(this.records);
+    });
+
+    }
+
+
+  DragEnd($event) {
+        console.log(this.myTree.getItems());
+      }
 }

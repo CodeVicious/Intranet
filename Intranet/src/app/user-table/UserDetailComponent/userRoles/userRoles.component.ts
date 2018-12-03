@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { MessageService } from '../../../services/message.service';
+import { RolesService } from '../../../services/roles.service';
+import { Role } from '../../../models/role';
 
 @Component({
   selector: 'app-userRoles',
@@ -6,12 +10,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userRoles.component.scss']
 })
 export class UserRolesComponent implements OnInit {
-  favoriteSeason: string;
-  seasons: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
+  userRole: Role;
+  roles: Role[];
 
-  constructor() { }
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService,
+    private roleService: RolesService    
+  ) { }
 
   ngOnInit() {
+    this.roleService.getRoles().subscribe(data => this.roles = data);
   }
 
 }
