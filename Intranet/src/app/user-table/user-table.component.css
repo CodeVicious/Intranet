@@ -3,17 +3,17 @@
 }
 
 /* Structure */
-.example-container {
+.mat-table-user .example-container {
   position: relative;
 }
 
-.example-table-container {
+.mat-table-user .example-table-container {
   position: relative;
   max-height: 400px;
   overflow: auto;
 }
 
-table {
+.mat-table-user table {
   width: 100%;
 }
 
@@ -37,21 +37,25 @@ table {
 }
 
 /* Column Widths */
-.mat-column-number,
-.mat-column-state {
+.mat-table-user.mat-column-number,
+.mat-table-user.mat-column-state {
   max-width: 64px;
 }
 
-.mat-column-created {
+.mat-table-user.mat-column-created {
   max-width: 124px;
 }
 
 .UserToolBar {
   position: fixed;
-  top:65px;    
+  top:65px;
   z-index: 3;
 }
 
-.fill-remaining-space {
+.UserToolBar .fill-remaining-space {
 flex: 1 1 auto;
+}
+
+.mat-table-user .mat-cell {
+  padding:10px 10px;
 }
