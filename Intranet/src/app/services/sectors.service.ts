@@ -32,7 +32,7 @@ export class SectorsService {
 
     return this.http.get<Sector[]>(`${this.queryUrl}/All`)
       .pipe(
-        catchError(this.handleError('getRoles', []))
+        catchError(this.handleError('getSectors', []))
       );
   } 
 

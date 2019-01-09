@@ -31,7 +31,7 @@ export class UserDetailComponentComponent implements OnInit {
       email: "jj",
       telephone: "jj",
       mobile: "jj",
-      password:"jj"};
+      password:"jj"}; 
    // this.userService.getUser(id)
    //   .subscribe(user => this.user = user);
   }
