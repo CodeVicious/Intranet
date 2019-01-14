@@ -50,6 +50,7 @@ import { SchedaPerformanceComponent } from './UserPerformanceTable/SchedaPerform
       UserSectorsComponent,
       jqxTreeComponent,
       UserPerformanceTableComponent,
+      UserDetailComponentComponent,
       SchedaPerformanceComponent
    ],
    imports: [

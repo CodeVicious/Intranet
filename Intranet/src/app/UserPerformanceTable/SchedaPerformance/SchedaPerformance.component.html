@@ -1,3 +1,73 @@
-<mat-toolbar color="primary" class="SchedaPerformanceToolBar"> <span>{{componentName}}</span> 
-	<span class="fill-remaining-space"></span>	
+<mat-toolbar color="primary" class="SchedaPerformanceToolBar"> <span>{{componentName}}</span>
+	<span class="fill-remaining-space"></span>
 </mat-toolbar>
+
+<!-- Card container that binds all togather -->  
+<mat-card>  
+    <!-- Title of an Card -->  
+    <mat-card-title>  
+		{{componentName}}
+    </mat-card-title>  
+  
+    <!-- Actual content starts from here -->  
+    <mat-card-content>  
+		<form [formGroup]="schedaUtente" (ngSubmit)="onSubmit()" novalidate>
+            <table>  
+                <tr>  
+                    <td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="id" matInput placeholder="ID">  
+                        </mat-form-field>  
+                    </td>  
+                    <td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="nome" matInput placeholder="Nome">  
+                        </mat-form-field>  
+					</td>  
+					<td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="cognome" matInput placeholder="Cognome">  
+                        </mat-form-field>  
+					</td>  
+					<td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="settore" matInput placeholder="Settore">  
+                        </mat-form-field>  
+					</td>  
+					<td>  
+                        <mat-form-field class="demo-full-width">  
+                            <input formControlName="categoria" matInput placeholder="Categoria">  
+                        </mat-form-field>  
+                    </td>  
+				</tr>  
+				
+                <tr>  
+                    <td colspan="2">  
+						<div formGroupName="areaA" novalidate>
+                        <mat-form-field class="demo-full-width">  
+                            <textarea formControlName="descrizione_obiettivo_1" matInput placeholder="Address" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>  
+                        </mat-form-field>  
+                        <mat-error>  
+                            <span *ngIf="!schedaUtente.get('descrizione_obiettivo_1').valid && schedaUtente.get('descrizione_obiettivo_1').touched">Please enter proper adddescrizione_obiettivo_1ress !!!</span>  
+						</mat-error>  
+						</div>
+                    </td>  
+                </tr>  
+               
+                <tr>  
+                    <td colspan="2">  
+                        <mat-slide-toggle formControlName="IsAccepted" (change)="onChange($event)">Accept Terms & Conditions</mat-slide-toggle>  
+                    </td>  
+                </tr>  
+                <tr>  
+                    <td colspan="2" class="content-center">  
+                        <button mat-raised-button color="accent" [disabled]="!schedaUtente.valid || IsAccepted==0">Submit</button>  
+                    </td>  
+                </tr>  
+                <tr>  
+                    <td></td>  
+                </tr>  
+            </table>  
+        </form>  
+    </mat-card-content>  
+</mat-card>  

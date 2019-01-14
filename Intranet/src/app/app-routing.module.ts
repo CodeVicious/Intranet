@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'user/:id', component: UserDetailComponentComponent },
   { path: 'performance', component: UserPerformanceTableComponent },
   { path: 'performance/:id', component: UserPerformanceTableComponent },
-  { path: 'performance/:id', component: SchedaPerformanceComponent }
+  { path: 'performance/:userid/add', component: SchedaPerformanceComponent }
   ];
 
 

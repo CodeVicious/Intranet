@@ -40,7 +40,9 @@ export class UserPerformanceTableComponent implements AfterViewInit, OnInit {
 	capitolo_irap_standard: string;
 
 
-  displayedColumns: string[] =  ["id", "anno", "inizio_incarico", "fine_incarico", "giorni_lavorati", "cp", "responsabilita_speciali", "nome", "cognome", "do", "note_Informative_1", "note_Informative_2", "percentuale_comando_effettivo", "percentuale_do", "presenza_giuridica", "capitolo_standard", "capitolo_oneri_standard", "capitolo_irap_standard"];
+  displayedColumns: string[] =  ["id", "anno", "inizio_incarico", "fine_incarico", "giorni_lavorati", "cp", 
+  "responsabilita_speciali", "nome", "cognome", "do", "note_Informative_1", "note_Informative_2", "percentuale_comando_effettivo", 
+  "percentuale_do", "presenza_giuridica", "capitolo_standard", "capitolo_oneri_standard", "capitolo_irap_standard", "actions"];
   data: UserPerf[] = [];
 
   componentName: String;

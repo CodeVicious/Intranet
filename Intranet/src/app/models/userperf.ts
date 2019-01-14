@@ -22,5 +22,6 @@ export interface UserPerf {
 	capitolo_standard: string;
 	capitolo_oneri_standard: string;
 	capitolo_irap_standard: string;
+	fk_scheda: number;
 
 }

@@ -4,7 +4,7 @@
 </mat-toolbar>
   
 
-<div class="mat-table-user">
+<div class="mat-table-user-perf">
 	<div class="mat-loading-shade"
 		*ngIf="isLoadingResults || isRateLimitReached">
 		<mat-spinner *ngIf="isLoadingResults"></mat-spinner>
@@ -123,12 +123,16 @@
 			<ng-container matColumnDef="actions"> <mat-header-cell
 				*matHeaderCellDef> Azioni </mat-header-cell> <mat-cell
 				*matCellDef="let row">
-			<button mat-mini-fab color="primary"
+			<button mat-mini-fab color="primary" 
 				(click)="onEditClicked(row)">Edit</button>
-			<button mat-mini-fab color="accent"
-				(click)="onDeleteClicked(row)">Delete</button>
-			<button mat-mini-fab color="accent"
-				routerLink="/user/{{row.id}}" >Zoom</button>
+			<button mat-mini-fab color="accent" 
+				(click)="onDeleteClicked(row)">Del</button>
+			<button *ngIf="row.fk_scheda!=0" mat-mini-fab color="warn"
+				routerLink="/performance/{{row.id}}" >Mod</button>
+				<button *ngIf="row.fk_scheda!=0" mat-mini-fab color="warn"
+				routerLink="/performance/{{row.id}}" >-</button>
+			<button *ngIf="row.fk_scheda==0" mat-mini-fab color="accent"
+				routerLink="/performance/{{row.id}}/add" >+</button>
 			</mat-cell> </ng-container>
 
 			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
