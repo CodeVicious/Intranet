@@ -9,6 +9,8 @@ import { IntranetComponent } from './intranet/intranet.component';
 import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
 import { UserTableComponent } from './user-table/user-table.component';
 import { UserDetailComponentComponent } from './user-table/UserDetailComponent/UserDetailComponent.component';
+import { UserPerformanceTableComponent } from './UserPerformanceTable/UserPerformanceTable.component';
+import { SchedaPerformanceComponent } from './UserPerformanceTable/SchedaPerformance/SchedaPerformance.component';
  
 
 const routes: Routes = [
@@ -16,6 +18,9 @@ const routes: Routes = [
   { path: 'home', component: MainDashboardComponent },
   { path: 'user', component: UserTableComponent },
   { path: 'user/:id', component: UserDetailComponentComponent },
+  { path: 'performance', component: UserPerformanceTableComponent },
+  { path: 'performance/:id', component: UserPerformanceTableComponent },
+  { path: 'performance/:id', component: SchedaPerformanceComponent }
   ];
 
 

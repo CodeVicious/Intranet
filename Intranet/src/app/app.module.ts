@@ -27,6 +27,9 @@ import { UserSectorsComponent } from './user-table/UserDetailComponent/userSecto
 import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree';
 import { RolesService } from './services/roles.service';
 import { SectorsService } from './services/sectors.service';
+import { UserPerformanceTableComponent } from './UserPerformanceTable/UserPerformanceTable.component';
+import { UserPerfService } from './services/userperf.service';
+import { SchedaPerformanceComponent } from './UserPerformanceTable/SchedaPerformance/SchedaPerformance.component';
 
 
 @NgModule({
@@ -42,11 +45,12 @@ import { SectorsService } from './services/sectors.service';
       MessagesComponent,
       SearchBoxContainerComponent,
       ModalDialogPopupComponent,
-      UserEditDialogComponent,
-      UserDetailComponentComponent,
+      UserEditDialogComponent,      
       UserRolesComponent,
       UserSectorsComponent,
-      jqxTreeComponent
+      jqxTreeComponent,
+      UserPerformanceTableComponent,
+      SchedaPerformanceComponent
    ],
    imports: [
       BrowserModule,
@@ -58,17 +62,18 @@ import { SectorsService } from './services/sectors.service';
       LayoutModule,
       IntranetMaterialModule,
       FontAwesomeModule,
-      FlexLayoutModule      
+      FlexLayoutModule
    ],
    providers: [
-    UserService,
-    RolesService,
-    SectorsService,
-    MessageService,
-    { provide: 'API_URL', useValue: 'http://localhost:8080/api' }
+      UserService,
+      RolesService,
+      SectorsService,
+      MessageService,
+      UserPerfService,
+      { provide: 'API_URL', useValue: 'http://localhost:8080/api' }
    ],
    bootstrap: [
       AppComponent
-   ] 
+   ]
 })
 export class AppModule {}
