@@ -6,6 +6,19 @@ import { HttpClientXsrfModule } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SchedaUser } from '../../models/schedaUser';
 
+
+  import { from } from 'rxjs';
+export interface Rilevanza {
+  value: number;
+  viewValue: string;
+}
+
+
+export interface ScalaValori {
+  value: number;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-SchedaPerformance',
   templateUrl: './SchedaPerformance.component.html',
@@ -19,6 +32,25 @@ export class SchedaPerformanceComponent implements OnInit {
   resultsLength = 0;
   isLoadingResults = true;
   isRateLimitReached = false;
+
+  rilevanze: Rilevanza[] = [
+    {value: 5, viewValue: 'Semplice'},
+    {value: 10, viewValue: 'Media'},
+    {value: 15, viewValue: 'Significativa'},
+    {value: 20, viewValue: 'Elevata'}
+  ];
+
+  valori: ScalaValori[] = [
+    {value: 0, viewValue: 'Inferiore allo standard'},
+    {value: 1, viewValue: 'Migliorabile'},
+    {value: 2, viewValue: 'Adeguato'},
+    {value: 3, viewValue: 'Buono'},
+    {value: 4, viewValue: 'Elevato'},
+    {value: 5, viewValue: 'Eccellente'}
+  ];
+
+
+  IsAccepted: number = 0;
 
   constructor(
     private http: HttpClientXsrfModule,
@@ -50,7 +82,14 @@ export class SchedaPerformanceComponent implements OnInit {
         indicatore_desc_1: '',
         indicatore_desc_2: '',
         indicatore_desc_3: '',
-        peso_1: '',
+        peso_1: [
+          {value: 0, viewValue: 'Inferiore allo standard'},
+          {value: 1, viewValue: 'Migliorabile'},
+          {value: 2, viewValue: 'Adeguato'},
+          {value: 3, viewValue: 'Buono'},
+          {value: 4, viewValue: 'Elevato'},
+          {value: 5, viewValue: 'Eccellente'}
+        ],
         peso_2: '',
         peso_3: '',
         raggiungimento_1: '',
@@ -71,6 +110,7 @@ export class SchedaPerformanceComponent implements OnInit {
         del_saper_3: '',
         del_saper_: ''
       }),
+      IsAccepted: false
 
     });
   }
@@ -82,5 +122,16 @@ export class SchedaPerformanceComponent implements OnInit {
     // Do useful stuff with the gathered data
     console.log(result);
   }
+
+    // On Change event of Toggle Button  
+    onChange(event:any)  
+    {  
+      if (event.checked == true) {  
+        this.IsAccepted = 1;  
+      } else {  
+        this.IsAccepted = 0;  
+      }  
+    }  
+    
 
 }
