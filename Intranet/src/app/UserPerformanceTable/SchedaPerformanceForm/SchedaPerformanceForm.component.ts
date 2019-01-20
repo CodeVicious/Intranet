@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-SchedaPerformanceForm',
+  selector: 'scheda-performance-form',
   templateUrl: './SchedaPerformanceForm.component.html',
   styleUrls: ['./SchedaPerformanceForm.component.scss']
 })

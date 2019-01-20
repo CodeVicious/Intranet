@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { UserPerfService } from '../../services/userperf.service';
 import { MessageService } from '../../services/message.service';
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -8,6 +7,7 @@ import { SchedaUser } from '../../models/schedaUser';
 
 
   import { from } from 'rxjs';
+import { UserPerfService } from '../services/userPerf.service';
 export interface Rilevanza {
   value: number;
   viewValue: string;
@@ -118,20 +118,20 @@ export class SchedaPerformanceComponent implements OnInit {
   onSubmit() {
     // Make sure to create a deep copy of the form-model
     const result: SchedaUser = Object.assign({}, this.schedaUtente.value);
-    
+
     // Do useful stuff with the gathered data
     console.log(result);
   }
 
-    // On Change event of Toggle Button  
-    onChange(event:any)  
-    {  
-      if (event.checked == true) {  
-        this.IsAccepted = 1;  
-      } else {  
-        this.IsAccepted = 0;  
-      }  
-    }  
-    
+    // On Change event of Toggle Button
+    onChange(event:any)
+    {
+      if (event.checked == true) {
+        this.IsAccepted = 1;
+      } else {
+        this.IsAccepted = 0;
+      }
+    }
+
 
 }

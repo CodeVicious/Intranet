@@ -28,8 +28,10 @@ import { jqxTreeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxtree
 import { RolesService } from './services/roles.service';
 import { SectorsService } from './services/sectors.service';
 import { UserPerformanceTableComponent } from './UserPerformanceTable/UserPerformanceTable.component';
-import { UserPerfService } from './services/userperf.service';
 import { SchedaPerformanceComponent } from './UserPerformanceTable/SchedaPerformance/SchedaPerformance.component';
+import { UserPerfService } from './UserPerformanceTable/services/userPerf.service';
+import { SchedaPerformanceFormComponent } from './UserPerformanceTable/SchedaPerformanceForm/SchedaPerformanceForm.component';
+import { SchedaPerfromanceUserHeaderComponent } from './UserPerformanceTable/SchedaPerfromanceUserHeader/SchedaPerfromanceUserHeader.component';
 
 
 @NgModule({
@@ -45,13 +47,15 @@ import { SchedaPerformanceComponent } from './UserPerformanceTable/SchedaPerform
       MessagesComponent,
       SearchBoxContainerComponent,
       ModalDialogPopupComponent,
-      UserEditDialogComponent,      
+      UserEditDialogComponent,
       UserRolesComponent,
       UserSectorsComponent,
       jqxTreeComponent,
       UserPerformanceTableComponent,
       UserDetailComponentComponent,
-      SchedaPerformanceComponent
+      SchedaPerformanceComponent,
+      SchedaPerformanceFormComponent,
+      SchedaPerfromanceUserHeaderComponent
    ],
    imports: [
       BrowserModule,

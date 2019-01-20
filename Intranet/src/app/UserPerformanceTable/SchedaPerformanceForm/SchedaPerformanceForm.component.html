@@ -1,3 +1,107 @@
-<p>
-  SchedaPerformanceForm works!
-</p>
+<form [formGroup]="schedaUtente" (ngSubmit)="onSubmit()" novalidate>
+
+  <mat-form-field class="demo-full-width">
+    <input formControlName="id" matInput placeholder="ID">
+  </mat-form-field>
+  <mat-form-field class="demo-full-width">
+    <input formControlName="nome" matInput placeholder="Nome">
+  </mat-form-field>
+  <mat-form-field class="demo-full-width">
+    <input formControlName="cognome" matInput placeholder="Cognome">
+  </mat-form-field>
+  <mat-form-field class="demo-full-width">
+    <input formControlName="settore" matInput placeholder="Settore">
+  </mat-form-field>
+  <mat-form-field class="demo-full-width">
+    <input formControlName="categoria" matInput placeholder="Categoria">
+  </mat-form-field>
+  <mat-card class="AreaA">
+    <mat-card-title>
+      AREA A
+    </mat-card-title>
+    <mat-card-content>
+      <div formGroupName="areaA" novalidate class="row">
+        <p>
+          <mat-form-field>
+            <textarea formControlName="descrizione_obiettivo_1" matInput placeholder="Descrizione Obiettivo 1"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea formControlName="indicatore_desc_1" matInput placeholder="Indicatore Descrittivo 1"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Peso Obiettivo 1" [(ngModel)]="peso_1" formControlName="peso_1">
+              <mat-option *ngFor="let valore of valori" [value]="valore">
+                {{valore.viewValue}} - {{valore.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea formControlName="raggiungimento_1" matInput placeholder="Raggiungimento 1" matTextareaAutosize
+             matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <textarea formControlName="descrizione_obiettivo_2" matInput placeholder="Descrizione Obiettivo 2"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea formControlName="indicatore_desc_2" matInput placeholder="Indicatore Descrittivo 2"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Peso Obiettivo 2" [(ngModel)]="peso_2" formControlName="peso_2">
+              <mat-option *ngFor="let valore of valori" [value]="valore">
+                {{valore.viewValue}} - {{valore.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea formControlName="raggiungimento_2" matInput placeholder="Raggiungimento 2" matTextareaAutosize
+             matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field>
+            <textarea formControlName="descrizione_obiettivo_3" matInput placeholder="Descrizione Obiettivo 3"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea formControlName="indicatore_desc_3" matInput placeholder="Indicatore Descrittivo 3"
+             matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select placeholder="Peso Obiettivo 3" [(ngModel)]="peso_3" formControlName="peso_3">
+              <mat-option *ngFor="let valore of valori" [value]="valore">
+                {{valore.viewValue}} - {{valore.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea formControlName="raggiungimento_3" matInput placeholder="Raggiungimento 3" matTextareaAutosize
+             matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="AreaB">
+    <mat-card-title>
+      AREA B
+    </mat-card-title>
+    <mat-card-content>
+      <div formGroupName="areaA" novalidate>
+        <mat-form-field class="demo-full-width">
+          <textarea formControlName="descrizione_obiettivo_1" matInput placeholder="Descrizione Obiettivo 1"
+           matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-slide-toggle formControlName="IsAccepted" (change)="onChange($event)">Accept Terms & Conditions</mat-slide-toggle>
+  <button mat-raised-button color="accent" [disabled]="!schedaUtente.valid || IsAccepted==0">Submit</button>
+</form>
