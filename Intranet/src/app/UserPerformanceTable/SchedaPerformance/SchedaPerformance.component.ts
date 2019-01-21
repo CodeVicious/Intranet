@@ -6,7 +6,7 @@ import { Component, OnInit, Inject } from '@angular/core';
   templateUrl: './SchedaPerformance.component.html',
   styleUrls: ['./SchedaPerformance.component.scss']
 })
-export class SchedaPerformanceComponent implements OnInit {
+export class SchedaPerformanceComponent  {
 
 
 

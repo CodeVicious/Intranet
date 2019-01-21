@@ -2,14 +2,12 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { MessageService } from '../../services/message.service';
-import { UserPerfService } from '../../services/userperf.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { UserPerfService } from '../services/userPerf.service';
+import { SchedaUser } from '../../models/schedaUser';
 
-@Component({
-  selector: 'scheda-performance-form',
-  templateUrl: './SchedaPerformanceForm.component.html',
-  styleUrls: ['./SchedaPerformanceForm.component.scss']
-})
+
+
 
 export interface Rilevanza {
   value: number;
@@ -22,8 +20,12 @@ export interface ScalaValori {
   viewValue: string;
 }
 
-
-export class SchedaPerformanceFormComponent implements OnInit {
+@Component({
+  selector: 'scheda-performance-form',
+  templateUrl: './SchedaPerformanceForm.component.html',
+  styleUrls: ['./SchedaPerformanceForm.component.scss']
+})
+export class SchedaPerformanceFormComponent  {
 
   componentName: String;
   schedaUtente: FormGroup;
