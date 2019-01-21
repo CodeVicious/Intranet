@@ -6,7 +6,7 @@ import { UserPerfService } from '../../services/userperf.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
-  selector: 'app-SchedaPerformanceForm',
+  selector: 'scheda-performance-form',
   templateUrl: './SchedaPerformanceForm.component.html',
   styleUrls: ['./SchedaPerformanceForm.component.scss']
 })

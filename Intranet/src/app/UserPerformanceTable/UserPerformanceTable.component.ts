@@ -7,7 +7,8 @@ import { merge,of as observableOf } from 'rxjs';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 import { UserEditDialogComponent } from '../user-table/UserEditDialog/UserEditDialog.component';
 import { ModalDialogPopupComponent } from '../user-table/modalDialogPopup/modalDialogPopup.component';
-import { UserPerfService } from '../services/userperf.service';
+import { UserPerfService } from './services/userPerf.service';
+
 
 @Component({
   selector: 'app-UserPerformanceTable',
@@ -20,7 +21,7 @@ export class UserPerformanceTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
-  id: number;    
+  id: number;
 	anno: number;
 	inizio_incarico: Date;
 	fine_incarico: Date;
@@ -40,8 +41,8 @@ export class UserPerformanceTableComponent implements AfterViewInit, OnInit {
 	capitolo_irap_standard: string;
 
 
-  displayedColumns: string[] =  ["id", "anno", "inizio_incarico", "fine_incarico", "giorni_lavorati", "cp", 
-  "responsabilita_speciali", "nome", "cognome", "do", "note_Informative_1", "note_Informative_2", "percentuale_comando_effettivo", 
+  displayedColumns: string[] =  ["id", "anno", "inizio_incarico", "fine_incarico", "giorni_lavorati", "cp",
+  "responsabilita_speciali", "nome", "cognome", "do", "note_Informative_1", "note_Informative_2", "percentuale_comando_effettivo",
   "percentuale_do", "presenza_giuridica", "capitolo_standard", "capitolo_oneri_standard", "capitolo_irap_standard", "actions"];
   data: UserPerf[] = [];
 
@@ -95,18 +96,18 @@ export class UserPerformanceTableComponent implements AfterViewInit, OnInit {
   onEditClicked(user: UserPerf) {
     const dialogRef = this.dialog.open(UserEditDialogComponent,
       {
-        width: '450px',        
+        width: '450px',
         data: {
           description: 'Modifica utente',
           user: user,
-          isEdit: true          
+          isEdit: true
         }
       });
 
-      dialogRef.afterClosed().subscribe(result => {    
-        console.log(result);    
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
         if (result){
-          
+
 
 
 
@@ -127,7 +128,7 @@ export class UserPerformanceTableComponent implements AfterViewInit, OnInit {
           body: `Sei sicuro di voler elimare l'utente [${user.id}] ${user.nome} - ${user.cognome} ?`
         }
       });
-  
+
     dialogRef.afterClosed().subscribe(result => {
       if (result == "OK")
         this.userService.deleteUser(user).pipe(
@@ -140,17 +141,17 @@ export class UserPerformanceTableComponent implements AfterViewInit, OnInit {
   onNewUserClick(){
     const dialogRef = this.dialog.open(UserEditDialogComponent,
       {
-        width: '450px',        
+        width: '450px',
         data: {
           description: 'Modifica utente',
           user: null,
-          isEdit: false          
+          isEdit: false
         }
       });
 
-      dialogRef.afterClosed().subscribe(result => {    
-        console.error(result);    
-        if (result){            
+      dialogRef.afterClosed().subscribe(result => {
+        console.error(result);
+        if (result){
             this.userService.addUser(result).pipe(
             map(() => { this.sort.sortChange.emit() }),
             map(() => { this.snackBar.open(`Utente ${result.id}: - ${result.name} - ${result.surname}`, "INSERITO!", { duration: 2000 }) })

@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 
+
 @Component({
   selector: 'app-SchedaPerformance',
   templateUrl: './SchedaPerformance.component.html',
@@ -7,8 +8,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class SchedaPerformanceComponent implements OnInit {
 
-  ngOnInit(){  }
 
-    
 
 }
