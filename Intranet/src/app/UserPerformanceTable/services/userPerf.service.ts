@@ -96,7 +96,7 @@ export class UserPerfService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`UserService: ${message}`);
+    this.messageService.add(`UserPerformanceService: ${message}`);
   }
 
 }

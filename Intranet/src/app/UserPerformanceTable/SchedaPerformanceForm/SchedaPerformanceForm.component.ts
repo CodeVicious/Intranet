@@ -7,8 +7,6 @@ import { UserPerfService } from '../services/userPerf.service';
 import { SchedaUser } from '../../models/schedaUser';
 
 
-
-
 export interface Rilevanza {
   value: number;
   viewValue: string;
