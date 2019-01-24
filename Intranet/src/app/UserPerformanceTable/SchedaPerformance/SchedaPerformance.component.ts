@@ -10,16 +10,16 @@ import { Observable } from 'rxjs';
   templateUrl: './SchedaPerformance.component.html',
   styleUrls: ['./SchedaPerformance.component.scss']
 })
-export class SchedaPerformanceComponent implements OnInit{
+export class SchedaPerformanceComponent implements OnInit {
 
   user: UserPerf;
   constructor(
     private route: ActivatedRoute,
-    private userPerfService: UserPerfService    
+    private userPerfService: UserPerfService
   ) { }
 
 
-  ngOnInit(){
+  ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('userid');
     this.route.params.subscribe(p => console.log(p));
     this.route.url.subscribe(segments => console.log(segments['path']));
@@ -27,9 +27,10 @@ export class SchedaPerformanceComponent implements OnInit{
     const user = this.route.data.subscribe(d => console.log(d));
 
     this.userPerfService.getUser(id).subscribe(
-      data => this.user = data      
+      data => this.user = data
     );
-    
+
+
   }
 
 
